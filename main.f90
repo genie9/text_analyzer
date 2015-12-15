@@ -9,7 +9,7 @@ program main
   implicit none
 
   character(len=80) :: filename
-  integer           :: ios
+  integer           :: ios1, ios2
 !type (node),pointer :: start
   if(command_argument_count() /= 1) then
     print *, '***Usage error: missing filename for data reading'
@@ -17,9 +17,15 @@ program main
 
   call get_command_argument(1, filename)
   
-  open(unit=1, file=filename, iostat=ios, status='old')
+  open(unit=1, file=filename, iostat=ios1, status='old', action='read')
   if(ios/=0) then
-    print '(a,a,3x,i0)', '***Error in opening file: ', trim(filename), ios
+    print '(a,a,3x,i0)', '***Error in opening file: ', trim(filename), ios1
+    stop
+  end if
+
+  open(unit=2, file=filename//'_analyze', iostat=ios2, status='new', action='write')
+  if(ios/=0) then
+    print '(a,a,3x,i0)', '***Error in creating file: ', trim(file), ios2
     stop
   end if
 
@@ -27,20 +33,21 @@ program main
 
   nullify(Root)
   call create_node()
-  Root => Current                               ! Initializing first node to root.
-  nullify(Root%parent)                          ! The root has no parent.
-  Root%color = Black                            ! The root is always Black.
+  Root => Current                  ! Initializing first node to root.
+  nullify(Root%parent)             ! The root has no parent.
+  Root%color = Black               ! The root is always Black.
 
   do
-    call create_node()                          ! Create other nodes.
+    call create_node()             ! Create other nodes.
     if(Seen_EOF) then                             
       exit
     end if
-!    call rebalance_tree(Current)
+    call rebalance_tree(Current)
   end do
- ! start => Root
-  depth=0
-  maxdepth=0
+  
+  ! printing tree
+  depth = 0
+  maxdepth = 0
   call print_preamble()
   call print_tree(root)
   call print_epilogue()

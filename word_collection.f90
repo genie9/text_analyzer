@@ -1,4 +1,4 @@
-! functions to read one string from file, to lower case and to compare strings !
+! functions to read one string from file and to write one to file, to lower case and to compare strings !
 module word_collection
   implicit none
 
@@ -10,7 +10,7 @@ contains
   function read_one() result(word)
     character(len=1)              :: tmp='0'
     character(len=80)             :: a
-    character(len=:), allocatable :: word
+    character(lem=:), allocatable :: word
     integer                       :: ios
   
 10    a = ''
@@ -44,7 +44,7 @@ contains
   
   ! function recognizes only english and finish leters and turns cap letters to lower case !
   function to_lower (str) result (str_low)
-    character(*), Intent(In) :: str
+    character(*), Intent(IN) :: str
     character(len(str))      :: str_low
     integer :: ic, i
 
@@ -75,5 +75,18 @@ end function to_lower
       compare = 0
     end if
   end function compare
+
+  subroutine record(node_p)
+    type (Node), pointer :: node_p
+    integer              :: ios
+
+    write(2, IOSTAT=ios,'(a,10x,i5)' ) node_p%word, node_p%iword
+      
+    ! check for writing errors 
+    if(ios > 0) then
+      print *,'***Error reading from file: ', ios
+      stop
+    end if
+  end subroutine record
 
 end module word_collection
