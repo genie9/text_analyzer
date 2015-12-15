@@ -1,0 +1,11 @@
+digraph tree {
+loiske -> kuin
+loiske -> näköistä
+kuin -> kalan
+kalan -> bileissä
+bileissä -> kaiken
+kaiken -> fisua
+näköistä -> lätäkköön
+näköistä -> on
+on -> saapunut
+}

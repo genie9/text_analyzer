@@ -1,6 +1,5 @@
 ! functions to read one string from file, to lower case and to compare strings !
 module word_collection
-  use node
   implicit none
 
 contains
@@ -20,7 +19,7 @@ contains
     
       ! check for reading errors !
       if(ios > 0) then
-        print *,'***Error: ', ios
+        print *,'***Error reading from file: ', ios
         stop
       end if
 
@@ -28,6 +27,7 @@ contains
       if(iachar(tmp) == 9 .or. iachar(tmp) == 10 .or. iachar(tmp) == 32 .or. iachar(tmp) == 44 &
               .or. iachar(tmp) == 46 .or. ios < 0) then
 
+        ! avoiding produce of empty strings resulting from consecutive not wanted charachters !
         if(len_trim(a) == 0 .and. ios /= -1) then
           goto 10
         end if

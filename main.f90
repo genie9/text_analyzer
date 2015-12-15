@@ -1,13 +1,21 @@
+! Main program checks arguments, opens text file and..........!
+! calls node creation and rebalancing tree untill end of file.!
+! After that traversal is called to compile final data........!
 program main
-  use word_collection
+  use node_def
+  use GLOBAL
+  use tree_collection
+  use print_tree_collection
   implicit none
 
-  character(len=80) :: arg, filename
-  character(len=:), allocatable :: f_a, f_b
-  integer            :: iarg, ios
+  character(len=80) :: filename
+  integer           :: ios
+!type (node),pointer :: start
+  if(command_argument_count() /= 1) then
+    print *, '***Usage error: missing filename for data reading'
+  end if
 
-  call get_command_argument(1, arg)
-  read(arg, *) filename
+  call get_command_argument(1, filename)
   
   open(unit=1, file=filename, iostat=ios, status='old')
   if(ios/=0) then
@@ -15,16 +23,28 @@ program main
     stop
   end if
 
+  Seen_EOF = .false.
+
+  nullify(Root)
+  call create_node()
+  Root => Current                               ! Initializing first node to root.
+  nullify(Root%parent)                          ! The root has no parent.
+  Root%color = Black                            ! The root is always Black.
+
   do
-    f_a = read_one()
-    f_a = to_lower(f_a)
-    if(f_a == '') then
+    call create_node()                          ! Create other nodes.
+    if(Seen_EOF) then                             
       exit
     end if
-
-    print *, f_a
+!    call rebalance_tree(Current)
   end do
-  
+ ! start => Root
+  depth=0
+  maxdepth=0
+  call print_preamble()
+  call print_tree(root)
+  call print_epilogue()
+
   print *, 'ready!!'
 
 end program main
