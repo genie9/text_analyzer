@@ -1,28 +1,3 @@
-! creating node-type of the tree !
-module node_def
-  implicit none
-
-  type, public               :: Node
-    character(80)            :: word
-    integer                  :: iword = 0
-    logical                  :: color
-    type (Node), pointer     :: left
-    type (Node), pointer     :: right
-    type (Node), pointer     :: parent
-  end  type
- 
-end module node_def
-
-module  GLOBAL
-   use  node_def
-
-   private
-   logical, public                 :: Seen_EOF
-   logical, parameter, public      :: Red = .true., Black = .false.
-   type (Node), pointer, public    :: Root, Current
-
-end  module  GLOBAL
-
 ! functions and subroutines to use binary tree: insert, rotate, traversal !
 module tree_collection 
    use node_def
@@ -30,8 +5,8 @@ module tree_collection
    use GLOBAL
 
    implicit none
-   public :: create_node, insert_in_tree, ROTATE_LEFT, ROTATE_RIGHT, &
-             REBALANCE_TREE, TRAVERSE
+   public :: create_node, insert_in_tree, rotate_left, rotate_right, &
+             rebalance_tree, record, traverse
 
 contains
 
@@ -223,13 +198,13 @@ end  subroutine  insert_in_tree
   recursive subroutine traverse(Current)
       type (Node), pointer :: Current
 
-      if(associated(Current%left) ) then             ! Take the left subtree.
+      if(associated(Current%left) ) then            ! Take the left subtree.
          call traverse(Current%left)
       end  if
 
-      record(Current%word)                           ! Retrieve value from tree and record it
-
-      if(associated(Current%right) ) then            ! Take the right subtree.
+      call record(Current)                          ! Retrieve value from tree and record it
+      
+      if(associated(Current%right) ) then           ! Take the right subtree.
          call traverse(Current%right)
       end if
 

@@ -8,24 +8,26 @@ program main
   use print_tree_collection
   implicit none
 
-  character(len=80) :: filename
+  character(len=80) :: filename_in, filename_out
   integer           :: ios1, ios2
-!type (node),pointer :: start
+  
   if(command_argument_count() /= 1) then
     print *, '***Usage error: missing filename for data reading'
   end if
 
-  call get_command_argument(1, filename)
+  call get_command_argument(1, filename_in)
   
-  open(unit=1, file=filename, iostat=ios1, status='old', action='read')
-  if(ios/=0) then
-    print '(a,a,3x,i0)', '***Error in opening file: ', trim(filename), ios1
+  open(unit=1, file=filename_in, iostat=ios1, status='old', action='read')
+  if(ios1/=0) then
+    print '(a,a,3x,i0)', '***Error in opening file: ', trim(filename_in), ios1
     stop
   end if
 
-  open(unit=2, file=filename//'_analyze', iostat=ios2, status='new', action='write')
-  if(ios/=0) then
-    print '(a,a,3x,i0)', '***Error in creating file: ', trim(file), ios2
+  filename_out = trim(filename_in)//'_analyze'
+
+  open(unit=2, file=filename_out, iostat=ios2, status='new', action='write')
+  if(ios2/=0) then
+    print '(a,a,3x,i0)', '***Error in creating file: ', trim(filename_out), ios2
     stop
   end if
 
@@ -51,7 +53,11 @@ program main
   call print_preamble()
   call print_tree(root)
   call print_epilogue()
+  print *, 'maximum depth of the tree = ', maxdepth
+  
+  call execute_command_line('dot -Tpng fort.100 > tree.png')
 
+  call traverse(Root)
   print *, 'ready!!'
 
 end program main

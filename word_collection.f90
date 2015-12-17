@@ -1,16 +1,17 @@
 ! functions to read one string from file and to write one to file, to lower case and to compare strings !
 module word_collection
+  use node_def
   implicit none
 
 contains
 
   ! picks up single characters from io to a temperament string in loop till end of string !
-  ! EOS are comma, period, space, tab or linefeed in ASCII !
+  ! EOS are comma, period, exclamation and question marks, space, tab or linefeed in ASCII !
   ! result is trimmed temperament string !
   function read_one() result(word)
     character(len=1)              :: tmp='0'
     character(len=80)             :: a
-    character(lem=:), allocatable :: word
+    character(len=:), allocatable :: word
     integer                       :: ios
   
 10    a = ''
@@ -25,7 +26,7 @@ contains
 
       ! on string's end exiting reading loop !
       if(iachar(tmp) == 9 .or. iachar(tmp) == 10 .or. iachar(tmp) == 32 .or. iachar(tmp) == 44 &
-              .or. iachar(tmp) == 46 .or. ios < 0) then
+              .or. iachar(tmp) == 46 .or. iachar(tmp) == 33 .or. iachar(tmp) == 63 .or. ios < 0) then
 
         ! avoiding produce of empty strings resulting from consecutive not wanted charachters !
         if(len_trim(a) == 0 .and. ios /= -1) then
@@ -77,10 +78,10 @@ end function to_lower
   end function compare
 
   subroutine record(node_p)
-    type (Node), pointer :: node_p
+    type (Node) :: node_p
     integer              :: ios
 
-    write(2, IOSTAT=ios,'(a,10x,i5)' ) node_p%word, node_p%iword
+    write(2, '(i5,4x,a)', IOSTAT=ios) node_p%iword, node_p%word
       
     ! check for writing errors 
     if(ios > 0) then

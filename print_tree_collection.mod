@@ -1,5 +1,5 @@
 GFORTRAN module version '10' created from print_tree_collection.f90
-MD5:6c1041ab7a7c567dbcbf83a85d1cf998 -- If you edit this, you'll get what you deserve.
+MD5:ef524403a06bef6f23e9dad8cfb5898f -- If you edit this, you'll get what you deserve.
 
 (() () () () () () () () () () () () () () () () () () () () () () ()
 () () () ())
@@ -20,7 +20,7 @@ UNKNOWN 0 0 POINTER_COMP) (UNKNOWN 0 0 0 0 UNKNOWN ()) 0 0 () () 0 ((3
 ()) 0 '80'))) () (UNKNOWN-FL UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN
 0 0) UNKNOWN-ACCESS ()) (4 'iword' (INTEGER 4 0 0 0 INTEGER ()) () (
 UNKNOWN-FL UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN 0 0)
-UNKNOWN-ACCESS (CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '0')) (5 'color'
+UNKNOWN-ACCESS (CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '1')) (5 'color'
 (LOGICAL 4 0 0 0 LOGICAL ()) () (UNKNOWN-FL UNKNOWN-INTENT UNKNOWN-PROC
 UNKNOWN UNKNOWN 0 0) UNKNOWN-ACCESS ()) (6 'left' (DERIVED 2 0 0 0
 DERIVED ()) () (UNKNOWN-FL UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN 0
@@ -80,33 +80,36 @@ CHARACTER 1 0 0 0 CHARACTER (()) DEFERRED_CL) 0 0 () () 32 () () () 0 0)
 33 'rebalance_tree' 'tree_collection' '' 1 ((PROCEDURE UNKNOWN-INTENT
 MODULE-PROC DECL UNKNOWN 0 0 SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 0 0
 0 UNKNOWN ()) 34 0 (35) () 0 () () () 0 0)
-36 'red' 'global' '' 1 ((PARAMETER UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+36 'record' 'word_collection' '' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL UNKNOWN 0 0 SUBROUTINE) (UNKNOWN 0 0 0 0 UNKNOWN ()) 37
+0 (38) () 0 () () () 0 0)
+39 'red' 'global' '' 1 ((PARAMETER UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
 IMPLICIT-SAVE 0 0) (LOGICAL 4 0 0 0 LOGICAL ()) 0 0 () (CONSTANT (
 LOGICAL 4 0 0 0 LOGICAL ()) 0 1) () 0 () () () 0 0)
-37 'root' 'global' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+40 'root' 'global' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
 IMPLICIT-SAVE 0 0 POINTER) (DERIVED 2 0 0 0 DERIVED ()) 0 0 () () 0 () ()
 () 0 0)
-38 'rotate_left' 'tree_collection' '' 1 ((PROCEDURE UNKNOWN-INTENT
-MODULE-PROC DECL UNKNOWN 0 0 SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 0 0
-0 UNKNOWN ()) 39 0 (40) () 0 () () () 0 0)
-41 'rotate_right' 'tree_collection' '' 1 ((PROCEDURE UNKNOWN-INTENT
+41 'rotate_left' 'tree_collection' '' 1 ((PROCEDURE UNKNOWN-INTENT
 MODULE-PROC DECL UNKNOWN 0 0 SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 0 0
 0 UNKNOWN ()) 42 0 (43) () 0 () () () 0 0)
-44 'seen_eof' 'global' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+44 'rotate_right' 'tree_collection' '' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL UNKNOWN 0 0 SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 0 0
+0 UNKNOWN ()) 45 0 (46) () 0 () () () 0 0)
+47 'seen_eof' 'global' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
 UNKNOWN IMPLICIT-SAVE 0 0) (LOGICAL 4 0 0 0 LOGICAL ()) 0 0 () () 0 () ()
 () 0 0)
-45 'to_lower' 'word_collection' '' 1 ((PROCEDURE UNKNOWN-INTENT
+48 'to_lower' 'word_collection' '' 1 ((PROCEDURE UNKNOWN-INTENT
 MODULE-PROC DECL UNKNOWN 0 0 FUNCTION IMPLICIT_PURE) (CHARACTER 1 0 0 0
-CHARACTER ((FUNCTION (INTEGER 4 0 0 0 INTEGER ()) 0 46 (('' (VARIABLE (
-CHARACTER 1 0 0 0 CHARACTER (())) 0 47 ())) ('' ())) '__len_1_i4' 0 'len')))
-48 0 (47) () 49 () () () 0 0)
-50 'traverse' 'tree_collection' '' 1 ((PROCEDURE UNKNOWN-INTENT
+CHARACTER ((FUNCTION (INTEGER 4 0 0 0 INTEGER ()) 0 49 (('' (VARIABLE (
+CHARACTER 1 0 0 0 CHARACTER (())) 0 50 ())) ('' ())) '__len_1_i4' 0 'len')))
+51 0 (50) () 52 () () () 0 0)
+53 'traverse' 'tree_collection' '' 1 ((PROCEDURE UNKNOWN-INTENT
 MODULE-PROC DECL UNKNOWN 0 0 SUBROUTINE RECURSIVE ALWAYS_EXPLICIT) (
-UNKNOWN 0 0 0 0 UNKNOWN ()) 51 0 (52) () 0 () () () 0 0)
-53 'tree_collection' 'tree_collection' '' 1 ((MODULE UNKNOWN-INTENT
+UNKNOWN 0 0 0 0 UNKNOWN ()) 54 0 (55) () 0 () () () 0 0)
+56 'tree_collection' 'tree_collection' '' 1 ((MODULE UNKNOWN-INTENT
 UNKNOWN-PROC UNKNOWN UNKNOWN 0 0) (UNKNOWN 0 0 0 0 UNKNOWN ()) 0 0 () ()
 0 () () () 0 0)
-54 'word_collection' 'word_collection' '' 1 ((MODULE UNKNOWN-INTENT
+57 'word_collection' 'word_collection' '' 1 ((MODULE UNKNOWN-INTENT
 UNKNOWN-PROC UNKNOWN UNKNOWN 0 0) (UNKNOWN 0 0 0 0 UNKNOWN ()) 0 0 () ()
 0 () () () 0 0)
 12 'a' '' '' 11 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN 0 0 DUMMY) (
@@ -119,28 +122,30 @@ CHARACTER 1 0 0 0 CHARACTER ((CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '80')))
 0 0 POINTER DUMMY) (DERIVED 2 0 0 0 DERIVED ()) 0 0 () () 0 () () () 0 0)
 29 'p' '' '' 28 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN 0
 0 POINTER DUMMY) (DERIVED 2 0 0 0 DERIVED ()) 0 0 () () 0 () () () 0 0)
-32 'word' '' '' 55 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+32 'word' '' '' 58 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
 UNKNOWN 0 0 ALLOCATABLE RESULT ALWAYS_EXPLICIT) (CHARACTER 1 0 0 0
 CHARACTER (()) DEFERRED_CL) 0 0 () () 0 () () () 0 0)
 35 'dummy_current' '' '' 34 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
 UNKNOWN UNKNOWN 0 0 POINTER DUMMY) (DERIVED 2 0 0 0 DERIVED ()) 0 0 () ()
 0 () () () 0 0)
-40 'pivot' '' '' 39 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
-UNKNOWN 0 0 POINTER DUMMY) (DERIVED 2 0 0 0 DERIVED ()) 0 0 () () 0 () ()
-() 0 0)
+38 'node_p' '' '' 37 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+UNKNOWN 0 0 DUMMY) (DERIVED 2 0 0 0 DERIVED ()) 0 0 () () 0 () () () 0 0)
 43 'pivot' '' '' 42 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
 UNKNOWN 0 0 POINTER DUMMY) (DERIVED 2 0 0 0 DERIVED ()) 0 0 () () 0 () ()
 () 0 0)
-46 'len' '(intrinsic)' '' 48 ((PROCEDURE UNKNOWN-INTENT UNKNOWN-PROC
-UNKNOWN UNKNOWN 0 0 FUNCTION) (INTEGER 4 0 0 0 INTEGER ()) 0 0 () () 46
+46 'pivot' '' '' 45 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+UNKNOWN 0 0 POINTER DUMMY) (DERIVED 2 0 0 0 DERIVED ()) 0 0 () () 0 () ()
+() 0 0)
+49 'len' '(intrinsic)' '' 51 ((PROCEDURE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN UNKNOWN 0 0 FUNCTION) (INTEGER 4 0 0 0 INTEGER ()) 0 0 () () 49
 () () () 0 0)
-47 'str' '' '' 48 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN 0 0 DUMMY)
+50 'str' '' '' 51 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN 0 0 DUMMY)
 (CHARACTER 1 0 0 0 CHARACTER (())) 0 0 () () 0 () () () 0 0)
-49 'str_low' '' '' 48 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+52 'str_low' '' '' 51 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
 UNKNOWN 0 0 RESULT) (CHARACTER 1 0 0 0 CHARACTER ((FUNCTION (INTEGER 4 0
-0 0 INTEGER ()) 0 46 (('' (VARIABLE (CHARACTER 1 0 0 0 CHARACTER (())) 0
-47 ())) ('' ())) '__len_1_i4' 0 'len'))) 0 0 () () 0 () () () 0 0)
-52 'current' '' '' 51 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+0 0 INTEGER ()) 0 49 (('' (VARIABLE (CHARACTER 1 0 0 0 CHARACTER (())) 0
+50 ())) ('' ())) '__len_1_i4' 0 'len'))) 0 0 () () 0 () () () 0 0)
+55 'current' '' '' 54 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
 UNKNOWN 0 0 POINTER DUMMY) (DERIVED 2 0 0 0 DERIVED ()) 0 0 () () 0 () ()
 () 0 0)
 )
@@ -149,6 +154,6 @@ UNKNOWN 0 0 POINTER DUMMY) (DERIVED 2 0 0 0 DERIVED ()) 0 0 () () 0 () ()
 'depth' 0 16 'gvunit' 0 17 'insert_in_tree' 0 18 'maxbuf' 0 21 'maxdepth'
 0 22 'node' 0 23 'node_def' 0 24 'print_epilogue' 0 25 'print_preamble'
 0 26 'print_tree' 0 27 'print_tree_collection' 0 30 'read_one' 0 31
-'rebalance_tree' 0 33 'red' 0 36 'root' 0 37 'rotate_left' 0 38
-'rotate_right' 0 41 'seen_eof' 0 44 'to_lower' 0 45 'traverse' 0 50
-'tree_collection' 0 53 'word_collection' 0 54)
+'rebalance_tree' 0 33 'record' 0 36 'red' 0 39 'root' 0 40 'rotate_left'
+0 41 'rotate_right' 0 44 'seen_eof' 0 47 'to_lower' 0 48 'traverse' 0 53
+'tree_collection' 0 56 'word_collection' 0 57)
