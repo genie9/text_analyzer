@@ -1,4 +1,4 @@
-Word analyzer is a program for sorting and counting words from the text file.
+Text analyzer is a program for sorting and counting words from the text file.
 
 The goal is achived by reading the file one string at a time, transforming it to a lower case and then storing it into the red-black tree. In case word has been encountered before, only it's appearance count is progressed.
 
