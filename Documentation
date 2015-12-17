@@ -1,0 +1,44 @@
+Program 'Text analyzer'
+
+Documentation
+
+1.	Introductoin
+
+The purpose of the program is to sort the text file's content in alphanumerical order and to count the appereance of the encountered words. The words have to be transformed to a lower case.
+The sorting of the content was supposed to be done with a binary tree which why I found this problem interesting. I have been studying graphs and sorting algorithmsbut haven't implemented any larger problems before. 
+I chose to use red-black tree for this problem thus it is self balancing binary search tree. It's privilege over regular binary search tree is it's time compexity for all operations being O(log(N)). In this case used operation is insert, but for example search could be also easily implemented. 
+
+2.	Methods
+
+The main problem of the program is sorting strings by engeneering binary tree. Other problems are comparing strings, reading from file and writing to file.
+
+	2.1	Red-black binary tree
+
+A binary tree is linked data structure linking data elements,  nodes,  which contains data and reference to "left" and "right" data elements so called children and in the case of the red-black tree also reference to previous node so called parent. The top most node is called the root.
+
+Basic idea of red-black tree is  
+1. Every node is either red or black.
+2. Every null pointer is considered to be pointing to an imaginary black node.
+3. If a node is red, then both its children are black.
+4. Every direct path from the root to a leaf contains the same number of black nodes. 
+
+#picture#
+
+After inserting new node there might appear conflicts with rules mentioned above which means that tree becomes unbalanced. In that case balansing methods must be implemented. This methods are called rotations and depending on situation either left or right or both rotations are taking place. What it really means is that nodes references to children and parents are rewritten and nodes are recolored.
+
+#picture#
+
+	2.2	Tree traversal
+
+After sorting, strings are picked up in right order by tree traversal method. The method implements in-order depth-first traversal. In picture below has shown order of node visitation.
+
+#picture#
+
+	2.3
+
+
+3.	Implementation
+
+4.	Results
+
+5.	Conclusions

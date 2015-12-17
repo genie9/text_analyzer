@@ -5,20 +5,20 @@ module word_collection
 
 contains
 
-  ! picks up single characters from io to a temperament string in loop till end of string !
-  ! EOS are comma, period, exclamation and question marks, space, tab or linefeed in ASCII !
-  ! result is trimmed temperament string !
+  ! Picks up single characters from io to a temperament string in loop till end of string.
+  ! EOS are comma, period, exclamation and question marks, space, tab or linefeed in ASCII.
+  ! Result is trimmed from temperament string.
   function read_one() result(word)
     character(len=1)              :: tmp='0'
     character(len=80)             :: a
     character(len=:), allocatable :: word
     integer                       :: ios
   
-10    a = ''
+10  a = ''
     do 
       read(1,'(a)', ADVANCE='NO', IOSTAT=ios) tmp
     
-      ! check for reading errors !
+      ! Checking for reading errors
       if(ios > 0) then
         print *,'***Error reading from file: ', ios
         stop
@@ -28,7 +28,7 @@ contains
       if(iachar(tmp) == 9 .or. iachar(tmp) == 10 .or. iachar(tmp) == 32 .or. iachar(tmp) == 44 &
               .or. iachar(tmp) == 46 .or. iachar(tmp) == 33 .or. iachar(tmp) == 63 .or. ios < 0) then
 
-        ! avoiding produce of empty strings resulting from consecutive not wanted charachters !
+        ! Avoiding production of an empty strings resulting from consecutive not wanted charachters
         if(len_trim(a) == 0 .and. ios /= -1) then
           goto 10
         end if
@@ -43,11 +43,11 @@ contains
 
   end function read_one
   
-  ! function recognizes only english and finish leters and turns cap letters to lower case !
+  ! Function recognizes only english and finish leters and turns cap letters to lower case
   function to_lower (str) result (str_low)
     character(*), Intent(IN) :: str
     character(len(str))      :: str_low
-    integer :: ic, i
+    integer                  :: ic, i
 
     character(29), parameter :: cap = 'ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÅ'
     character(29), parameter :: low = 'abcdefghijklmnopqrstuvwxyzäöå'
@@ -63,16 +63,13 @@ end function to_lower
   ! Compares lexically two strings given as parameters;
   ! Function returns -1 if first is "smaller", 0 if same strings, 1 if second is "smaller"
   integer function compare(a, b)
-    character(len=80), intent(IN) :: a, b
+    character(*), intent(IN) :: a, b
 
     if(llt(a, b)) then
-      ! print *, 'ensin ',a,' sitten ', b
       compare = (-1)
     else if(lgt(a, b)) then
-      ! print *, 'ensin ',b,' sitten ', a
       compare = 1
     else
-      ! print *, b,' sama kuin ', a
       compare = 0
     end if
   end function compare
@@ -84,7 +81,7 @@ end function to_lower
 
     write(2, '(i5,4x,a)', IOSTAT=ios) node_p%iword, trim(node_p%word)
       
-    ! check for writing errors 
+    ! Check for writing errors 
     if(ios > 0) then
       print *,'***Error reading from file: ', ios
       stop

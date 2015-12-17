@@ -17,7 +17,6 @@ contains
     if (associated(p)) then
        depth = depth + 1
        if (depth > maxdepth) maxdepth = depth
-       print '(i4,5x,a)', depth, trim(p%word)
        if (associated(p%left))  write(GVUNIT,'(a,a,a)') trim(p%word),' -> ',trim(p%left%word)
        if (associated(p%right)) write(GVUNIT,'(a,a,a)') trim(p%word),' -> ',trim(p%right%word)
        call print_tree(p%left)
