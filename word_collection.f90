@@ -60,8 +60,8 @@ contains
 
 end function to_lower
 
-  ! compares lexically two strings given as parameters; !
-  ! returns -1 if first is "smaller", 0 if same strings, 1 if second is "smaller" ! 
+  ! Compares lexically two strings given as parameters;
+  ! Function returns -1 if first is "smaller", 0 if same strings, 1 if second is "smaller"
   integer function compare(a, b)
     character(len=80), intent(IN) :: a, b
 
@@ -77,11 +77,12 @@ end function to_lower
     end if
   end function compare
 
+  ! Soubroutine to print word and it's count into a file.
   subroutine record(node_p)
     type (Node) :: node_p
-    integer              :: ios
+    integer     :: ios
 
-    write(2, '(i5,4x,a)', IOSTAT=ios) node_p%iword, node_p%word
+    write(2, '(i5,4x,a)', IOSTAT=ios) node_p%iword, trim(node_p%word)
       
     ! check for writing errors 
     if(ios > 0) then

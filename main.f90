@@ -9,7 +9,7 @@ program main
   implicit none
 
   character(len=80) :: filename_in, filename_out
-  integer           :: ios1, ios2
+  integer           :: ios1, ios2, dot
   
   if(command_argument_count() /= 1) then
     print *, '***Usage error: missing filename for data reading'
@@ -22,8 +22,12 @@ program main
     print '(a,a,3x,i0)', '***Error in opening file: ', trim(filename_in), ios1
     stop
   end if
-
-  filename_out = trim(filename_in)//'_analyze'
+  
+  ! Modifing the output filename to txt file.
+  ! Searching for file identifier and period
+  dot = scan(filename_in, '.', .true.)
+  ! .. and concatenating components together
+  filename_out = trim(filename_in(1:dot-1))//'_analyze.txt'
 
   open(unit=2, file=filename_out, iostat=ios2, status='new', action='write')
   if(ios2/=0) then
