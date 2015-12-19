@@ -25,7 +25,6 @@ contains
       end if
 
       ! On string's ending character exiting reading loop
-      ! scan(tmp, '!"/()=?{[]},.;:<>')
       if(iachar(tmp) == 9 .or. iachar(tmp) == 10 .or. iachar(tmp) == 32 &
               .or. (scan(tmp, '!"/()=?{[]},.;:<>') /= 0) &
 !              .or. iachar(tmp) == 44 &
@@ -56,8 +55,8 @@ contains
     character(len(str))      :: str_low
     integer                  :: ic, i
 
-    character(29), parameter :: cap = 'ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÅ'
-    character(29), parameter :: low = 'abcdefghijklmnopqrstuvwxyzäöå'
+    character(29), parameter :: cap = 'ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÅŒÆØ'
+    character(29), parameter :: low = 'abcdefghijklmnopqrstuvwxyzäöåœæø'
 
     str_low = str
     do i = 1, len_trim(str)

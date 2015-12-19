@@ -8,6 +8,7 @@ The purpose of the program is to sort the text file's content in alphanumerical 
 The sorting of the content was supposed to be done with a binary tree which why I found this problem interesting. I have been studying graphs and sorting algorithmsbut haven't implemented any larger problems before. 
 I chose to use red-black tree for this problem thus it is self balancing binary search tree. It's privilege over regular binary search tree is it's time compexity for all operations being O(log(N)). In this case used operation is insert, but for example search could be also easily implemented. 
 
+
 2.	Methods
 
 The main problem of the program is sorting strings by engeneering binary tree. Other problems are comparing strings, reading from file and writing to file. The last mentioned problems are more technical ones and will be explained in next chapter. 
@@ -34,11 +35,81 @@ After sorting, strings are picked up in right order by tree traversal method. Th
 
 #picture#
 
+
 3.	Implementation
 
+The programs consists of five modules and main program. 
+Main program takes care of reading in program parameters, opening files, maintaining loop for tree creation, printing tree and finaly calls the tree traversal method.
+
+Image describing method invocation
+#picture#
 
 
-4.	Results
+Modules and their procedures:
+-------------------------------------
+node_def
+	contains the defenition of type Node
+-------------------------------------
+GLOBAL
+	global variables and parameters
+-------------------------------------
+word_collection
+	read_one()			Reads one character at a time from a file and appends it to a string untill one of the string separator charachters are encountered. 
+						Characters which separates strings and thus are not read in are space, tab, new line and a set of special characters: . , ! " / ( ) [ ] { } < > = ? : ;.
+						The trimmed string is returned.
+	to_lower(a)			Transforms upper case characters to lower case. The alphabet is hardcoded as scandinavic keybord layout.
+						Input is a type of character.
+						Returns string in lower case.
+	compare(a,b)		Compares alphabeticaly two strings. Fortran's intrinsic functions llt(a,b) and lgt(a,b) have been used here.
+						Input is type of character.
+						Return integer -1 if a < b, 0 if a = b and 1 if a > b.
+	record(a)			Appends a string and it's appearance into a file.
+						Input is a pointer to a node which data is to be written to a file.
+------------------------------------
+tree_collection
+	create_node(a)			This procedure creates a node by reading data with read_one() and setting pointers to children to null.
+							Calls the procedure insert_in_tree.
+	insert_in_tree(node_p)	Searches the right position for node in tree using procedure compare().
+							Input is a pointer to a node to be inserted.
+	rebalance_tree(node_p)	This procedure rebalances and re-colors the nodes of a tree following an insertion. Calls prosedures rotate_left() and rotate_right().
+							Input is a pointer to a (red) node that has been inserted in the tree.
+	rotate_left(node_p) &
+	rotate_right(node_p)	Performs a left or right rotation of a branch of a Red-Black tree.
+							Input is a pointer to the node about which a branch of the tree is to be rotated.
+	traverse(node_p)		Recursive subroutine which searches the tree for sorted nodes.
+							Input is a pointer to a node on a path.
+-------------------------------------
+print_tree_collection
+	Contains recursive subroutine print_tree() to produce a string for graphviz. Strings are found by pre-order depth-first traversal.
+	
 
-The program's product is a text file with list of sorted words and their appearance count. A name of the product file is catenated from a name of the file given as a parameter with _analyze.txt: somefile_analyze.text. Also in some cases image of the tree is produced as png-file. Unfortunatly with some characters there is a problem, so the image of the graph is not a real feature.   with graphviz.
-5.	Conclusions
+4.	Compiling and runing program
+
+Programm is written and tested on Linux machine so are directions provided below.
+
+Text_analyzer.zip file contains Makefile which takes care of compilation of program. To use it you have to have gfortran installed.
+Download text_analyzer.zip to a derectory you want to insall the program in. First unzip file. 
+
+Command line:
+unzip text_analyzer.zip -d 'path_to_directory'/text_analyzer
+
+After that inside the text_analyzer run make. 
+
+If there is some other compiler to be used, then the order of files must be: gfortran node.f90 word_collection.f90 tree_collection.f90 print_tree_collection.f90 main.f90.
+
+To run a program execute exe-file wuth file to be analyzed as parametr
+Command line:
+./text_analyzer.exe path_to_file
+
+The output file will appear in the same directory as an original file.
+
+
+5.	Results
+
+The program's product is a text file with list of sorted words and their appearance count. A name of the produced file is combined from a name of the file given as a parameter with _analyze.txt postfix: somefile_analyze.txt.
+In some cases also an image of the tree is produced as a tree.png file in text_analyzer directory. For this purpose Graphviz package for linux has been used. Unfortunatly with some input characters graphviz gives syntax error, so this graphical presentation is used merely for debuging and is not a real feature of program.
+
+
+6.	Conclusions
+
+

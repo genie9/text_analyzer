@@ -9,6 +9,26 @@ module tree_collection
              rebalance_tree, record, traverse
 
 contains
+ 
+  ! This procedure creates a node from given data with a pointers to children set to null.
+  ! Then it calls the procedure insert_in_tree.
+  subroutine create_node()
+      character(len= :), allocatable :: new_word
+
+      new_word = to_lower(read_one())             ! The next value to be inserted.
+      if(new_word == '') then                     ! The end of the file encountered.
+       Seen_EOF = .true.
+       return
+      end if
+ 
+      allocate(Current)                           ! Create a node.
+      Current%word = new_word
+      Current%color = Red                         ! New nodes are always Red.
+      nullify(Current%left)                   
+      nullify(Current%right)
+      call insert_in_tree(Current)                ! Insert the new node in the tree.
+
+  end subroutine create_node
 
   ! This procedure receives pointer to an isolated new node, in which all pointers are null, and which
   ! contains a value, ready for insertion in the tree.
@@ -53,72 +73,11 @@ contains
          W%Right => new                           ! The new node is in the right branch.
       end  if
 
-end  subroutine  insert_in_tree
-
-  ! This procedure performs a left rotation of a branch of a Red-Black tree, with node <Pivot>
-  ! as the pivot.
-  subroutine rotate_left(pivot)
-      !! INCOMING: Pivot = a pointer to the node about which a branch of the tree is to be rotated.
-      type (Node), pointer         :: pivot
-
-      type (Node), pointer         :: Y, X
-
-      X => pivot                                    ! Can't use Pivot directly.  Must use a temporary.
-
-      Y => X%right                                  ! Y is the right child of X.
-      X%right => Y%left                             ! Change the left subtree of Y into X's right
-                                                    ! subtree.
-      if(associated(Y%left) ) then
-         Y%left%parent => X                         ! The left sub-node of Y points back at X --
-                                                    ! that is, X is now the parent of Y's left subtree.
-      end  if
-      Y%parent => X%parent                          ! X's parent now becomes the parent of Y.
-      if(.not. associated (X%parent) ) then         ! We are at the root node.
-         Root => Y
-      else if(associated (X, X%parent%left) ) then  ! X is on the left of its parent.
-         X%parent%left => Y                         ! The left pointer of X's parent points at Y.
-      else                                          ! X is on the right subtree of its parent.
-         X%parent%right => Y                        ! The right pointer of X's parent points at Y.
-      end  if
-      Y%left => X                                   ! Make X a left child of node Y.  (X's left sub-
-                                                    ! tree comes with X).
-      X%parent => Y                                 ! X's parent is now Y.
-
-  end subroutine rotate_left
-
-  ! This procedure performs a right rotation of a branch of a Red-Black tree, with node <Pivot>
-  ! as the pivot.  This procedure is the mirror image of ROTATE_left, with the words Left
-  ! and Right interchanged.
-  subroutine  rotate_right(pivot)
-      !! INCOMING: Pivot = a pointer to the node about which a branch of the tree is to be rotated.
-      type (Node), pointer         :: pivot
-      type (Node), pointer         :: Y, X
-
-      X => pivot                                    ! Can't use Pivot directly.  Must use a temporary.
-
-      Y => X%left                                   ! Y is the left child of X.
-      X%left => Y%right                             ! Change the right subtree of Y into X's left
-                                                    ! subtree.
-      if(associated(Y%right) ) then
-         Y%right%parent => X                        ! The right sub-node of Y points back at X --
-      end if                                        ! that is, X is now the parent of Y's right subtree
-      
-      Y%parent => X%parent                          ! X's parent now becomes the parent of Y.
-      if (.not. associated(X%parent) ) then         ! We are at the root node.
-         Root => Y
-      else if(associated(X, X%parent%right)) then   ! X is on the right of its parent.
-         X%parent%right => Y                        ! The right pointer of X's parent points at Y.
-      else                                          ! X is on the left of its parent.
-         X%parent%left => Y                         ! The left pointer of X's parent points at Y.
-      end if
-      Y%right => X                                  ! Put X on the left of Y.
-      X%parent => Y                                 ! X's parent is now Y.
-
-  end subroutine rotate_right
+  end  subroutine  insert_in_tree
 
   ! This procedure rebalances and re-colors the nodes of a tree following an insertion.  
+  ! INCOMING: Dummy_Current = a pointer to a (red) node that has been inserted in the tree.
   subroutine  rebalance_tree(dummy_current)
-      !! INCOMING: Dummy_Current = a pointer to a (red) node that has been inserted in the tree.
       type (Node), pointer         :: dummy_current
       type (Node), pointer         :: X, Y
       logical                      :: red_uncle
@@ -194,6 +153,68 @@ end  subroutine  insert_in_tree
 
   end  subroutine  rebalance_tree
 
+
+  ! This procedure performs a left rotation of a branch of a Red-Black tree, with node <Pivot>
+  ! as the pivot.
+  ! INCOMING: Pivot = a pointer to the node about which a branch of the tree is to be rotated.
+  subroutine rotate_left(pivot)
+      type (Node), pointer         :: pivot
+
+      type (Node), pointer         :: Y, X
+
+      X => pivot                                    ! Can't use Pivot directly.  Must use a temporary.
+
+      Y => X%right                                  ! Y is the right child of X.
+      X%right => Y%left                             ! Change the left subtree of Y into X's right
+                                                    ! subtree.
+      if(associated(Y%left) ) then
+         Y%left%parent => X                         ! The left sub-node of Y points back at X --
+                                                    ! that is, X is now the parent of Y's left subtree.
+      end  if
+      Y%parent => X%parent                          ! X's parent now becomes the parent of Y.
+      if(.not. associated (X%parent) ) then         ! We are at the root node.
+         Root => Y
+      else if(associated (X, X%parent%left) ) then  ! X is on the left of its parent.
+         X%parent%left => Y                         ! The left pointer of X's parent points at Y.
+      else                                          ! X is on the right subtree of its parent.
+         X%parent%right => Y                        ! The right pointer of X's parent points at Y.
+      end  if
+      Y%left => X                                   ! Make X a left child of node Y.  (X's left sub-
+                                                    ! tree comes with X).
+      X%parent => Y                                 ! X's parent is now Y.
+
+  end subroutine rotate_left
+
+  ! This procedure performs a right rotation of a branch of a Red-Black tree, with node <Pivot>
+  ! as the pivot.  This procedure is the mirror image of ROTATE_left, with the words Left
+  ! and Right interchanged.
+  ! INCOMING: Pivot = a pointer to the node about which a branch of the tree is to be rotated.
+  subroutine  rotate_right(pivot)
+      type (Node), pointer         :: pivot
+      type (Node), pointer         :: Y, X
+
+      X => pivot                                    ! Can't use Pivot directly.  Must use a temporary.
+
+      Y => X%left                                   ! Y is the left child of X.
+      X%left => Y%right                             ! Change the right subtree of Y into X's left
+                                                    ! subtree.
+      if(associated(Y%right) ) then
+         Y%right%parent => X                        ! The right sub-node of Y points back at X --
+      end if                                        ! that is, X is now the parent of Y's right subtree
+      
+      Y%parent => X%parent                          ! X's parent now becomes the parent of Y.
+      if (.not. associated(X%parent) ) then         ! We are at the root node.
+         Root => Y
+      else if(associated(X, X%parent%right)) then   ! X is on the right of its parent.
+         X%parent%right => Y                        ! The right pointer of X's parent points at Y.
+      else                                          ! X is on the left of its parent.
+         X%parent%left => Y                         ! The left pointer of X's parent points at Y.
+      end if
+      Y%right => X                                  ! Put X on the left of Y.
+      X%parent => Y                                 ! X's parent is now Y.
+
+  end subroutine rotate_right
+
   ! This recursive subroutine retrieves and prints the values from the tree in ascending order.
   recursive subroutine traverse(Current)
       type (Node), pointer :: Current
@@ -209,25 +230,5 @@ end  subroutine  insert_in_tree
       end if
 
   end subroutine traverse
-  
-  ! This procedure creates a node from given data.
-  ! Then it calls the procedure insert_in_tree.
-  subroutine create_node()
-      character(len= :), allocatable :: new_word
-
-      new_word = to_lower(read_one())             ! The next value to be inserted.
-      if(new_word == '') then                     ! We encountered the end of the file.
-       Seen_EOF = .true.
-       return
-      end if
- 
-      allocate(Current)                           ! Create a node.
-      Current%word = new_word
-      Current%color = Red                         ! New nodes are always Red.
-      nullify(Current%left)
-      nullify(Current%right)
-      call insert_in_tree(Current)                ! Insert the new node in the tree.
-
-  end subroutine create_node
 
 end  module tree_collection

@@ -9,7 +9,7 @@ program main
   implicit none
 
   character(len=80) :: filename_in, filename_out
-  integer           :: ios1, ios2, dot
+  integer           :: ios1, ios2, ind
   
   if(command_argument_count() /= 1) then
     print *, '***Usage error: missing filename for data reading'
@@ -25,9 +25,9 @@ program main
   
   ! Modifing the output filename to txt file.
   ! Searching for file identifier and period
-  dot = scan(filename_in, '.', .true.)
+  ind = scan(filename_in, '.', .true.)
   ! .. and concatenating components together
-  filename_out = trim(filename_in(1:dot-1))//'_analyze.txt'
+  filename_out = trim(filename_in(1:ind-1))//'_analyze.txt'
 
   open(unit=2, file=filename_out, iostat=ios2, status='new', action='write')
   if(ios2/=0) then
@@ -51,7 +51,7 @@ program main
     call rebalance_tree(Current)
   end do
   
-  ! printing tree
+  ! Printing tree
   depth = 0
   maxdepth = 0
   call print_preamble()
