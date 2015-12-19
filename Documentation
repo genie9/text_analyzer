@@ -10,7 +10,7 @@ I chose to use red-black tree for this problem thus it is self balancing binary 
 
 2.	Methods
 
-The main problem of the program is sorting strings by engeneering binary tree. Other problems are comparing strings, reading from file and writing to file.
+The main problem of the program is sorting strings by engeneering binary tree. Other problems are comparing strings, reading from file and writing to file. The last mentioned problems are more technical ones and will be explained in next chapter. 
 
 	2.1	Red-black binary tree
 
@@ -24,7 +24,7 @@ Basic idea of red-black tree is
 
 #picture#
 
-After inserting new node there might appear conflicts with rules mentioned above which means that tree becomes unbalanced. In that case balansing methods must be implemented. This methods are called rotations and depending on situation either left or right or both rotations are taking place. What it really means is that nodes references to children and parents are rewritten and nodes are recolored.
+After inserting new node there might appear conflicts with rules mentioned above which means that tree becomes unbalanced. In that case balansing methods must be implemented. This methods are called rotations and depending on situation either left or right or both rotations are taking place. What it really means is that nodes references to children and parents are rewritten and nodes are recolored to satisfy the red-black tree rules.
 
 #picture#
 
@@ -34,11 +34,11 @@ After sorting, strings are picked up in right order by tree traversal method. Th
 
 #picture#
 
-	2.3
-
-
 3.	Implementation
+
+
 
 4.	Results
 
+The program's product is a text file with list of sorted words and their appearance count. A name of the product file is catenated from a name of the file given as a parameter with _analyze.txt: somefile_analyze.text. Also in some cases image of the tree is produced as png-file. Unfortunatly with some characters there is a problem, so the image of the graph is not a real feature.   with graphviz.
 5.	Conclusions

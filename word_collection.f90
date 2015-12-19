@@ -24,9 +24,16 @@ contains
         stop
       end if
 
-      ! on string's end exiting reading loop !
-      if(iachar(tmp) == 9 .or. iachar(tmp) == 10 .or. iachar(tmp) == 32 .or. iachar(tmp) == 44 &
-              .or. iachar(tmp) == 46 .or. iachar(tmp) == 33 .or. iachar(tmp) == 63 .or. ios < 0) then
+      ! On string's ending character exiting reading loop
+      ! scan(tmp, '!"/()=?{[]},.;:<>')
+      if(iachar(tmp) == 9 .or. iachar(tmp) == 10 .or. iachar(tmp) == 32 &
+              .or. (scan(tmp, '!"/()=?{[]},.;:<>') /= 0) &
+!              .or. iachar(tmp) == 44 &
+!              .or. iachar(tmp) == 46 .or. iachar(tmp) == 33 .or. iachar(tmp) == 34 .or. iachar(tmp) == 58 .or. iachar(tmp) == 59 &
+!              .or. iachar(tmp) == 40 .or. iachar(tmp) == 41 .or. iachar(tmp) == 47 .or. iachar(tmp) == 63 .or. iachar(tmp) == 91 &
+!              .or. iachar(tmp) == 93 .or. iachar(tmp) == 123 .or. iachar(tmp) == 125 .or. iachar(tmp) == 60 .or. iachar(tmp) == 62 &
+!              .or. iachar(tmp) == 61 &
+              .or. ios < 0) then
 
         ! Avoiding production of an empty strings resulting from consecutive not wanted charachters
         if(len_trim(a) == 0 .and. ios /= -1) then
