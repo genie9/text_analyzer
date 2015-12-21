@@ -1,5 +1,5 @@
 GFORTRAN module version '10' created from print_tree_collection.f90
-MD5:fb7fd57aae8a69128454aa20038882b4 -- If you edit this, you'll get what you deserve.
+MD5:384ef8ed131deefd05fe7f914dfb0105 -- If you edit this, you'll get what you deserve.
 
 (() () () () () () () () () () () () () () () () () () () () () () ()
 () () () ())
@@ -112,6 +112,9 @@ UNKNOWN-PROC UNKNOWN UNKNOWN 0 0) (UNKNOWN 0 0 0 0 UNKNOWN ()) 0 0 () ()
 57 'word_collection' 'word_collection' '' 1 ((MODULE UNKNOWN-INTENT
 UNKNOWN-PROC UNKNOWN UNKNOWN 0 0) (UNKNOWN 0 0 0 0 UNKNOWN ()) 0 0 () ()
 0 () () () 0 0)
+58 'wordcount' 'global' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN IMPLICIT-SAVE 0 0) (INTEGER 4 0 0 0 INTEGER ()) 0 0 () () 0 () ()
+() 0 0)
 12 'a' '' '' 11 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN 0 0 DUMMY) (
 CHARACTER 1 0 0 0 CHARACTER (())) 0 0 () () 0 () () () 0 0)
 13 'b' '' '' 11 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN 0 0 DUMMY) (
@@ -120,7 +123,7 @@ CHARACTER 1 0 0 0 CHARACTER (())) 0 0 () () 0 () () () 0 0)
 0 0 POINTER DUMMY) (DERIVED 2 0 0 0 DERIVED ()) 0 0 () () 0 () () () 0 0)
 29 'p' '' '' 28 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN 0
 0 POINTER DUMMY) (DERIVED 2 0 0 0 DERIVED ()) 0 0 () () 0 () () () 0 0)
-32 'word' '' '' 58 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+32 'word' '' '' 59 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
 UNKNOWN 0 0 ALLOCATABLE RESULT ALWAYS_EXPLICIT) (CHARACTER 1 0 0 0
 CHARACTER (()) DEFERRED_CL) 0 0 () () 0 () () () 0 0)
 35 'dummy_current' '' '' 34 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
@@ -154,4 +157,4 @@ UNKNOWN 0 0 POINTER DUMMY) (DERIVED 2 0 0 0 DERIVED ()) 0 0 () () 0 () ()
 0 26 'print_tree' 0 27 'print_tree_collection' 0 30 'read_one' 0 31
 'rebalance_tree' 0 33 'record' 0 36 'red' 0 39 'root' 0 40 'rotate_left'
 0 41 'rotate_right' 0 44 'seen_eof' 0 47 'to_lower' 0 48 'traverse' 0 53
-'tree_collection' 0 56 'word_collection' 0 57)
+'tree_collection' 0 56 'word_collection' 0 57 'wordcount' 0 58)

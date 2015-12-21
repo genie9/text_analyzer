@@ -21,6 +21,6 @@ module  GLOBAL
    logical, public                 :: Seen_EOF
    logical, parameter, public      :: Red = .true., Black = .false.
    type (Node), pointer, public    :: Root, Current
-   integer, public                 :: wordcount = 0   
+   integer, public                 :: Wordcount = 0   
 end  module  GLOBAL
 

@@ -60,7 +60,7 @@ program main
   print *, 'maximum depth of the tree = ', maxdepth
   
   ! Uncomment line below to PRINT THE TREE
-  call execute_command_line('dot -Tpng fort.100 > tree.png')
+  ! call execute_command_line('dot -Tpng fort.100 > tree.png')
 
   call traverse(Root)
   print *, 'ready!!'

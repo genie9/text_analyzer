@@ -1,0 +1,143 @@
+﻿Salamaseeprat                                                                 19.11.2013
+
+
+Sanni Ketoluoto
+Marko Mäkinen
+Evgenia Lyjina
+
+
+Sanamäärä: 1234
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Suunnittelun periaatteet
+tietojenkäsittelytieteissä
+________________
+
+
+
+
+Johdanto 
+
+
+Suunnittelu on ihmisen toimintaa, jolla luodaan ratkaisuja ihmisten tarpeisiin. Aikojen alussa ihminen keksi ja suunnitteli alkeellisia työkaluja, kuten pyörän ja lopulta monimutkaisempia vinssejä ja vetolaitteita. Tämä kaikki juontuu ihmisen mielenkiinnosta tutkia kuinka asiat toimivat. Tietojenkäsittelytieteen tuntema suunnittelu ei kuitenkaan ole samanlaista kuin muu suunnittelu. Kuten Peter J. Denning toteaa: “Tietojenkäsittelytieteiden suunnittelussa toimitaan prosesseja suorittavien abstraktien objektien kanssa.” [PJD]
+
+
+Artikkelissaan Great Principles in Computing Curricula Peter J. Denning [PJD] käsittelee tietojenkäsittelytieteessä laajasti käytettäviä mekaniikkoja. Tietojenkäsittelyn mekaniikat eivät kuitenkaan kata kaikkia periaatteita, joita tietojenkäsittelytieteessä käytetään.  Tietojenkäsittelytieteilijät  turvautuvat myös suunnittelun periaatteisiin. 
+Suunnittelun viisi periaatetta ovat yksinkertaisuus, suorituskyky, luotettavuus, kehitettävyys ja tietoturva. Käsittelemme tässä esseessä nämä viisi suunnittelun periaatetta. Tässä esitetyt tietojenkäsittelytieteen suunnittelun periaatteet pitävät sisällään myös kattavasti suunnittelun käytäntöjä, joita Peter J. Denningin mukaan ovat mm.: abstrahointi, informaation piilottaminen, moduulit, erikseen kääntäminen, pakkaukset, versionhallinta, hajoita ja hallitse,  toimintatasot, kerrosajattelu, hierarkiat, ongelmien eriyttäminen, uudelleenkäyttö, kapselointi, rajapinta ja virtuaalikone.
+
+
+
+
+
+
+________________
+
+
+Yksinkertaisuus “Keep it simple, stupid” 
+
+
+Tietojenkäsittelyn tieteen historia on lyhyt, mutta alan kehitys on ollut huimaava. Edsger W. Dijkstran v. 1972 on määritellyt tietojenkäsittelytiedettä monimutkaisuuden hallitsemisen tutkimiseksi[1]. Monimutkaisuus vaatii hyvää suunnittelua ja sen puuttuminen tuo ongelmia. ”Tietojenkäsittelyjärjestelmät alkavat olla monimutkaisimpia ihmisten tekemiä konstruktioita, joiden toimintaa olisi hyvä ymmärtää, hallita ja säädellä”, Kimmo Ratikainen toteaa[2].
+Historiasta tunnettu lause “Keep it simple, stupid”[3],  on muodostunut motoksi ohjelmoijille heidän tavoitteessaan tuoda yksinkertaisuus sovellusten suunnitteluun. Yksinkertaisuuden aihetta ovat pohtineet David Parnas ja Niklaus Wirth IEE Computer lehdessä 1996 julkaistuissa artikkeleissaan[4][5].
+
+
+Parnas on tutkinut ohjelmien koodeja etsiessä sellaisia, joiden tyyli on johdonmukaista, selkeärakenteista ja yksinkertaista. Ohjelmissa myöhemmin suoritettavat muutokset eivät myöskään rikkoisi tällaisen ohjelmiston selkeää rakennetta. Suurin osa näkemistään ohjelmista Parlas muotoilee olevan ”karsea-epäluotettava-vaikeasti muutettava". Erinomaista koodia hänen mukaan nähdään harvoin. Sitä tuotetaan useimmiten epäkaupallisissa olosuhteissa.
+
+
+Kaupallisuus luo paineet tuotesuunnittelulle asiakkaan toivoessa lisää piirteitä käyttämiinsä järjestelmiin. Ohjelmilta odotetaan yhteensopivuutta erilaisten laitteen kanssa, suorituskykyä ja hyödyllisiä ominaisuuksia. Monimutkaisten järjestelmien hyvä suunnittelu on vaativan ja huolellisen ajatustyön tulos. Tullakseen hyväksi ohjelmoijaksi on tärkeä oppia muiden virheistä ja onnistumisista. Hyvät ideat kannattaa soveltaa ja kehittää.  Ohjelmoijat kehittävätkin aika ajoin uusia ohjelmointikieliä suunnitteluprosessissa sivussa.  Tämä ei ole kuitenkaan avain hyvän ohjelman tekemiseen. Parnaksen kuvailemia “kauniita ja selkeitä ohjelmia” voidaan kirjoittaa myös symbolisella kielellä.  Ohjelmointikielissä on aina kompromissi tehokkuuden ja käytännöllisyyden välissä niinkuin monissa muissakin asioissa tässä maailmassa.
+
+
+
+
+
+
+Suorituskyky 
+Tietokoneen ohjelmistojärjestelmien suorituskyvyn keskeisinä suureina  pidetään suoritustehoa, vasteaikaa ja käyttöastetta. Yleisesti voitaisiin ajatella, että suoritusteho kuvaa teoreettisesti nopeutta, jolla tietokoneen suorittaa toivotun prosessin. Suorituskyky kuvaa siis yleisesti koko järjestelmän tehokkuutta, vasteaikaa sekä käyttöastetta. 
+
+
+Daniel A. Menascén piti kesäkuussa 2002 esitelmän “Software, Perfomance, or Engineering?” ACM:n WOSP´´2 -konferenssissa. Menascén mukaan useimmat kiinnostavat ohjelmistojärjestelmät ovat monimutkaisia suunnitella ja toteuttaa. Ohjelmistojen vaatimuksen jaetaan toiminnallisiin ja ei-toiminnallisiin vaatimuksiin. Menascé valittelee sitä tosiasiaa, että vain hyvin harvoin suorituskykyvaatimukset otetaan huomioon suunnitteluvaiheessa.
+Ohjelmistotekniikka on elänyt ajassa, jossa prosessorien teho on kasvanut vuosi vuodelta Mooren lain mukaisesti. Käytettävissä oleva teho on mahdollistanut tehottomien ohjelmien tekemisen. Tarvetta kattavalle suorituskyky suunnittelulle ole ollut, jota myös “korjaa-myöhemmin” asenne heijastaa.
+
+
+Mistä tämä johtuu? Tähän kysymykseen Menascé tarjoaa viisi vastausta: 1.Tieteellisten periaatteiden ja mallien puuttuminen, 2. Tietojenkäsittelytieteen koulutus, 3. IT-ammattilaisten ammattitaidottomuus, 4. Yhden käyttäjän asenne, sekä 5. pienen tietokannan asenne.[5] Menascé tarjoaa esitys avaa lukijalle myös muutamia ratkaisuja edellä kuvattuihin ongelmiin. Menascén mukaan ohjelmistotekniikan tulisi tukeutua matematiikan, fysiikan ja laskennallisten tieteiden malleihin ja periaatteisiin, sekä parantaa alan yleistä mielenkiintoa suorituskyvyn ja resurssitarpeiden analysointiin. Alan koulutukseen tulisi ottaa mukaan suorituskyvyn arviointi. Alan heikosti koulutettu ammattilaiset tulisi saada koulutettua, samoin yhden-käyttäjän asenne tulisi kitkeä alan ammattilaisten keskuudesta.  Tietokantojen suunnittelussa tulisi ottaa huomioo taulukon koko ja SQL-kyselyiden yksinkertaisuus.[6] 
+
+
+
+
+
+
+
+
+Luotettavuus
+Luotettavuus tarkoittaa, kuinka luotettavasti tietokoneohjelma suorittaa sille annetut prosessit ja operaatiot.  Ohjelmistot ovat monimutkaisimpia ihmisten aikaansaannoksia. Ohjelmat ovat ihmisten kirjoittamia ja näin ollen epätäydellisiä. Täysin virheetöntä ja täten täysin luotettavaa ohjelmaa ei ole olemassa, vaikka luotettavuutta pidetään yhtenä tärkeimmistä ohjelmiston suunnittelun periaatteista. Teoriassa vain täysin virheetön ohjelma on luotettava.  
+Ohjelmistojen epätäydellisyyttä ajatellen George Candea ja Armando Fox ovat kirjoittaneet artikkelin Crash-only software (USENIX Association, 2003)[7], jossa he käsittelevät erilaista lähestymistapaa ohjelmien kaatumistilanteisiin. Crash-only ohjelmat ovat ohjelmia, jotka hoitavat kaatumistilanteen nopeasti uudelleen käynnistymällä.  Tällainen ohjelma kaatuu turvallisesti, ja palautuu nopeasti. 
+Candea ja Fox kirjoittavat artikkelissaan “On hyvin epäkäytännöllistä suunnitella ohjelmistoja, jotka eivät takuulla kaadu. Tutkimukset osoittavat, että suuressa mittakaavassa seisokit (downtime)  johtuvat ohimenevistä tai ajoittaisista bugeista.”. Tietokoneohjelmat eivät ole täydellisiä. Ohjelmat toimivat monilla eri alustoilla hyvin erilaisissa kokoonpanoissa. Tällaisessa ympäristössä keskeytystiloja tulee välttämättä. Tästä Candea ja Fox kysyvät “Ohjelman on oltava yhtä valmis kaatumiseen  kuin puhtaaseen alasajoon. Mutta jos ohjelma on kaatumisturvallinen, niin miksi  tukea ei-kaatuvaa mekanismia ohjelman sammuttamiseksi?”.
+Candean ja Foxin mukaan kaatuminen on tehtävä turvalliseksi ja toipuminen on tehtävä nopeaksi, jolloin ainoa tapa sammuttaa ohjelma on kaataa se. Tällaiset ohjelmat ovat hankalampia rakentaa kuin perinteiset hallitun-alasajon ohjelmat. Rakentamisen hankaluus johtuu poikkeustilanteiden hankalasta simuloinnista ohjelman kehitysvaiheessa. Ohjelman toipumisen on myös oltava virheetön.
+Crash-only ohjelmien ominaisuuksina on oltava ei-tilapäisen tiedon tallentaminen erityiseen tilatietomuistiin (state store). Tällaisen ohjelman on myös pystyttävä varautumaan muiden osien kaatumiseen. 
+
+
+
+
+
+
+
+
+
+
+Kehitettävyys
+Yhteiskunta tulee koko ajan yhä riippuvaisemmaksi tietokoneista ja ohjelmistoista.  60-luvulta lähtien on puhuttu ohjelmistotekniikan kriisistä, jolla tarkoitetaan etupäässä ohjelmistojen ikääntymistä. Ohjelmistot ikääntyvät, kun vaatimustaso nousee, ja rinnalle kehitetään uusia ohjelmistoja, jotka eivät välttämättä ole yhteensopivia vanhojen kanssa. Ohjelmistojen kehitettävyys on näin ollen tärkeä suunnittelun periaate.
+Vuosituhannen vaihtuminen sai aikaan paniikin: ohjelmistoja ei ollut suunniteltu toimimaan 2000-luvulla, joten ne täytyi päivittää kiireessä. Vastaavia kiireisiä tilanteita syntyy jatkuvasti muun muassa poliittisten tilanteiden muuttuessa. Olisi siis parasta suunnitella heti aluksi sellainen ohjelmisto, joka sopeutuu erilaisiin tilanteisiin.
+Meir Lehman tarkoittaa e-ohjelmistoilla ohjelmistoja, joita käytetään todellisen maailman sovellutuksissa. Vaikka ohjelmistot ovat ihmisen kehittämistä järjestelmistä monimutkaisimpia, on ohjelmisto aina äärellinen ja epätäydellinen malli todellisuudesta. Rajallisen ohjelmistojärjestelmän ja rajoittamattoman käyttöaineen (teoriassa esimerkiksi maailmankaikkeuden) välillä on aina kuilu, jota pyritään paikkaamaan oletuksilla. Lehmanin mukaan e-ohjelmistoissa on keskimäärin yksi todellisuuteen pohjautuva oletus kymmentä koodiriviä kohden. Ongelmia syntyy, kun oletukset eivät pidäkään paikkaansa esimerkiksi ympäristön muutosten vuoksi.
+Koska ohjelmistot ovat staattisia niin kauan kuin ihmiset eivät niitä muuta, Lehman on laatinut artikkelissaan[9] suosituksia ohjelmistojen kehitettävyyden parantamiseksi. Hänen mukaansa ohjelmiston vaikutuksia tulisi tarkastella laaja-alaisesti. Sovellutusten rajat täytyisi identifioida ja niitä tulisi tarkistaa ja  päivittää jatkuvasti. Ohjelmistojen oletukset tulisi kirjata ylös ja katselmoida säännöllisesti. Ohjelmiston eri osien tulisi olla riippumattomia toisistaan, jotta yksi virhe ei rikkoisi koko järjestelmää. Edessä on vielä paljon työtä ennen kuin nämä periaatteet saadaan käyttöön.
+________________
+
+
+Tietoturva
+Tietoturva-kattotermin alla keskitymme nyt turvallisuuteen. Elämme maailmassa, jossa ympärillämme on suurimman osan ajasta uskomaton määrä erinäköisiä koneita. Se seikka, että koneet eivät vahingoita luontoa, on äärimmäisen tärkeää. Tämä on lähtökohta, jolla pyrimme avaamaan näkemystä turvallisuuteen.
+Moderni ihmiselämämme on riippuvainen erinäköisistä koneista ja siitä lupauksesta, että koneet jatkavat jurnuttamistaan eivätkä käyttäydy poikkeavalla tavalla. Useita ihmisiä on kuollut koneiden epäturvallisuuden takia. Tämmöiset onnettomuudet ovat kuitenkin olleet huonon suunnittelun tai käyttäjävirheen, jopa ohjeistuksen laiminlyönnin aiheuttamia.
+Koneiden suonissa sykkii vielä tänäkin päivänä öljy ja sydämenä toimii polttomoottori, mutta aivot on vaihdettu osittain ihmisestä koneaivoksi. Molemmat aivot ovat olleet syypäitä edellä mainittuihin vahinkoihin ja nykypäivänä onkin selvää, että monimutkaisten koneiden rakentamiseen tarvitaan ohjelmistoilta apua. Alallemme onkin syntynyt valtavasti tutkimusta vakaiden ohjelmistojen kirjoittamisesta. Tämän tutkimuksen pohjalta on syntynyt paljon käytännön toteutuksia, joilla pyritään parantamaan luottamusta monimutkaisiin järjestelmiin ja estämään vahinkoja. 
+Järjestelmien modularisointi ja vikatiloista raportointi ovat kaksi suurta tekijää ohjelmistojen turvallisuudessa. Näitä asioita tarkastellaankin nykypäivänä tarkasti länsimaissa yhteiskunnallisesti ennen kuin tuotteita päästetään markkinoille. Ohjelmistojen turvallisuus on siis ainakin hyvää suunnittelua ja dokumentointia, monimutkaisuuden pilkkomista, vikasietoisuutta ja näiden abstraktimpien asioiden hyvää käytännön toteutusta. 
+
+
+
+
+________________
+
+
+
+
+Päätös 
+Opimme tuntemaan ohjelmistosuunnittelun periaatteita. Oli mielenkiintoista lukea, mitä kaikkea tuleekaan ottaa huomioon ohjelmistoja suunnitellessa. Myös se yllätti, miten yksinkertaisiin virheisiin suuret projektit ovat kaatuneet, parhaana esimerkkinä luentomonisteen kehitettävyys-kohdassa mainittu ESA:n Ariane 5 -raketin tuho ensilennollaan.
+
+
+Lähteet
+[PJD] [Peter J. Denning, Great Principles in Computing Curricula 2003]
+[1] Dijkstra, E. W. (1972) Notes on Structured Programming. Teoksessa Structured Programming; 0.-J. Dahl, E. W. Dijkstra ja C. A. R. Hoare (toim.). New York: Academic Press.
+[2][6] Kimmo Raatikainen, Johdatus tietojenkasittelytieteeseen: ¨Tarinoita tietojenkasittelytieteen ¨ osa-alueilta, luentomoniste
+[3] http://fi.wikipedia.org/wiki/KISS-periaate
+[4] Pamas, D. L. (1996) Why Software Jewels Are Rare. IEEE Computer, 29, 2, helmikuu 1996, sivut 57--60.
+[5] Wrrth, N. (1995) A Plea for Lean Software. IEEE Computer, 28, 2, helmikuu 1995, sivut 64--68.
+[7] Menasce, D. A. Software, Performance, or Engineering? Proceedings of ACM Workshop on Software and Performance (WOSP'02), July 2002
+[8] Candea, G. and Fox, A. Crash-Only Software. Proceedings of the 9th Workshop on Hot Topics in Operating Systems, USENIX Association, May 2003, pages 67-72.
+[9] Lehman, M. M. Software's Future: Managing Evolution. IEEE Software, 15, 1 (Jan/Feb 1998), pages 40-44.

@@ -224,7 +224,7 @@ contains
       end  if
       
       call record(Current)                          ! Retrieve value from tree and record it
-      wordcount = wordcount + 1
+      Wordcount = Wordcount + 1
 
       if(associated(Current%right) ) then           ! Take the right subtree.
          call traverse(Current%right)
